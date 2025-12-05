@@ -1,8 +1,7 @@
 
 # 🛒 **SADLF-RecSys**  
 ### *Semantic + Behavioural Deep Learning Recommendation System*
-
-![Banner](https://via.placeholder.com/1200x250.png?text=SADLF-RecSys+%7C+Semantic+%2B+Behavioural+Recommendation+Engine)
+An end-to-end deep-learning recommendation engine combining semantic understanding (BERT) and behavioral analytics, built using PyTorch, with automatic dataset mapping and visualization tools.
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![PyTorch](https://img.shields.io/badge/PyTorch-Deep--Learning-red.svg)
