@@ -1,206 +1,137 @@
-🛒 SADLF-RecSys — E-Commerce Webpage Recommendation System (Semantic + Behavioral Fusion)
+🛒 SADLF-RecSys — E-Commerce Webpage Recommendation System (Semantic + Behavioural Fusion)
 
-An end-to-end deep-learning recommendation engine combining semantic understanding (BERT) and behavioral analytics, built using PyTorch, with automatic dataset mapping and visualization tools.
+An end-to-end deep-learning recommendation engine that combines semantic understanding (BERT) with behavioural analytics (click rate, time spent) to generate personalised product relevance scores. Built using PyTorch with automatic dataset mapping and visual evaluation tools.
 
-🔍 Predicts user preference (0–1 score) based on:
+🔍 Predicts user preference (0–1 score) using:
 
 Query semantics
 
 Product text embeddings (BERT)
 
-Click-rate behavior
+Click-rate behaviour
 
 Time spent on page
 
-⚡ Achieves high accuracy on product recommendation experiments
-📊 Includes visualization (bar graph of model metrics)
-📁 Auto-detects Amazon review datasets
+⚡ Highlights
 
-⚠️ Disclaimer: This project is for educational & research purposes only.
+🔥 High accuracy on personalised product recommendations
+
+📊 Visualisation included (bar graph of model metrics)
+
+📁 Auto-detects Amazon Review datasets
+
+🧠 BERT-powered semantic understanding
+
+⚠️ Disclaimer: This project is for educational and research purposes only.
+It must not be used for commercial profiling or sensitive decision-making.
 
 🚀 Features
-✔ 1. Semantic + Behavioral Deep Fusion
+🚀 1. Semantic + Behavioural Deep Fusion
 
-Uses BERT embeddings for text and combines them with behavioral features.
+Uses BERT embeddings for text and fuses them with behavioural signals for improved prediction accuracy.
 
-✔ 2. Automatic Dataset Mapping
+🚀 2. Automatic Dataset Mapping
 
-If dataset contains Amazon Review fields:
+If your dataset contains Amazon Review fields:
 
-name
-reviews.text
-reviews.rating
-reviews.numHelpful
+name  
+reviews.text  
+reviews.rating  
+reviews.numHelpful  
 categories
 
 
 The model automatically converts to SADLF format.
 
-✔ 3. Custom Dataset Support
+🚀 3. Custom Dataset Support
 
-Also works with datasets already in this format:
+Also supports datasets already in the format:
 
-query
-page_content
-click_rate
-time_spent
+query  
+page_content  
+click_rate  
+time_spent  
 label
 
-✔ 4. Full SADLF Neural Network
+🧱 Model Architecture (SADLF)
+[BERT semantic embedding]  
+        +  
+[Behavioural features]  
+        ↓  
+Linear(→128) → ReLU  
+Linear(128→64) → ReLU  
+Linear(64→1) → Sigmoid  
 
-3-layer deep network with Sigmoid output for preference scoring.
-
-✔ 5. Model Evaluation Metrics
-
-Outputs:
-
-Mean Squared Error
-
-Precision
-
-Recall
-
-F1 Score
-
-Performance bar chart
-
-📂 Project Structure
-SADLF-RecSys/
-│
-├── recommendation.py          # Main model: training + embedding + evaluation
-├── requirements.txt           # Core dependencies
-├── README.md                  # Documentation
-├── .gitignore                 # Files to exclude from GitHub
-│
-├── dataset.csv (optional)     # User dataset
-├── uploaded_dataset/ (auto)   # Auto-extracted ZIP folder
-└── LICENSE                    # MIT License (optional)
-
-📦 Dataset Used
-
-You can use:
-
-🟩 1. Amazon Product Review Dataset
-
-(Script auto-maps these fields)
-
-Field	Description
-categories	Product category / query text
-reviews.text	User-written text
-reviews.rating	Rating (1–5)
-reviews.numHelpful	Helpful votes (click rate)
-name	Product name
-🟦 2. Custom Dataset Format
-Column	Description
-query	Search query / category
-page_content	Product text / description
-click_rate	User interaction score
-time_spent	Time spent (seconds)
-label	Normalized (0–1) preference
-🎯 Model Architecture (SADLF)
-🔹 Embedding Stage
-
-Uses BERT (bert-base-uncased)
-
-Extracts semantic embeddings for:
-
-query
-
-page_content
-
-🔹 Behavioral Stage
-
-Normalizes:
-
-click_rate
-
-time_spent
-
-🔹 Fusion Network
-Linear → 128 → ReLU
-Linear → 64  → ReLU
-Linear → 1   → Sigmoid
-
-🔹 Loss & Optimization
 
 Loss: MSELoss
 
-Optimizer: Adam (lr = 0.0005)
+Optimiser: Adam (0.0005)
+
+Epochs: 15
 
 🧪 Training the Model
 
-Run the script:
+Run:
 
 python recommendation.py
 
 
-You will be prompted to select your CSV or ZIP dataset.
+A file-picker will open. Choose:
 
-Training log example:
+dataset.csv, or
 
-SADLF Epoch [3/15] Loss: 0.0284
-SADLF Epoch [6/15] Loss: 0.0191
-SADLF Epoch [9/15] Loss: 0.0147
-...
+dataset.zip
 
-
-Best metrics will be printed after evaluation.
+Example log:
+Epoch 3/15 — Loss: 0.028  
+Epoch 6/15 — Loss: 0.019  
+Epoch 9/15 — Loss: 0.014  
 
 📈 Model Evaluation Output
+MSE = 0.04  
+Precision = 0.91  
+Recall = 0.88  
+F1-Score = 0.89
 
-The script prints:
 
-📈 SADLF Results:
-MSE=0.0421, Precision=0.91, Recall=0.88, F1=0.89
+Includes a bar graph of all 4 metrics.
 
-
-And displays a bar chart:
-
-Metric	Value
-MSE	0.04
-Precision	0.91
-Recall	0.88
-F1-score	0.89
-⚡ Installation
-1️⃣ Create environment
+⚙️ Installation
 python -m venv venv
-
-2️⃣ Activate
-
-PowerShell
-
 venv\Scripts\Activate.ps1
-
-3️⃣ Install Dependencies
 pip install -r requirements.txt
 
-🌐 Future Upgrades
+📂 Project Structure
+SADLF-RecSys/
+│
+├── recommendation.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+│
+├── dataset.csv (optional)
+└── uploaded_dataset/ (auto)
 
-Ranking model (pairwise scoring)
+🎯 Future Enhancements
 
-Explainability: LIME / SHAP
+Web API (FastAPI / Flask)
 
-Real-time API using FastAPI
+Streamlit dashboard
 
-Integration with vector database (FAISS)
+Explainability (SHAP / LIME)
 
-Streamlit interactive dashboard
+Vector search with FAISS
 
-Multi-modal features (images + text + behavior)
-
-🔐 Ethical Disclaimer
-
-This recommender system is designed for academic, research, and educational purposes.
-It should not be used to profile or influence users unethically.
+Hybrid collaborative filtering
 
 🙌 Credits
 
-BERT Transformer (Devlin et al.)
+BERT (Devlin et al.)
 
-PyTorch Team
+PyTorch
 
 Scikit-Learn
 
-Amazon Review Datasets (public research datasets)
+Amazon Review Datasets
 
 Maintainer: Sree Sai Vikas V.M
