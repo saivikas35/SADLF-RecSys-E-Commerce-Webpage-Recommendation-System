@@ -200,6 +200,7 @@ Evaluation Tools: **Scikit-Learn**
 Dataset Sources: **Amazon Product Review Datasets / Custom E-commerce Behavioural Datasets**
 
 
-Maintainer: **Sree Sai Vikas V.M**  
+Maintainer: **Sree Sai Vikas V.M**  & **G.Sarvaghna Reddy**
+
 Powered by: **BERT**, **PyTorch**, **Scikit-Learn**
 
