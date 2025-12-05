@@ -1,38 +1,34 @@
-🛒 SADLF-RecSys — E-Commerce Webpage Recommendation System (Semantic + Behavioural Fusion)
+🛒 SADLF-RecSys
+Semantic + Behavioural Deep Learning Recommendation System
+🔍 Overview
+SADLF-RecSys predicts user–product relevance scores (0–1) using a fusion of semantic text embeddings (BERT) and behavioural features (click rate, time spent).
+Designed for e-commerce product ranking, research, and ML experimentation.
 
-An end-to-end deep-learning recommendation engine that combines semantic understanding (BERT) with behavioural analytics (click rate, time spent) to generate personalised product relevance scores. Built using PyTorch with automatic dataset mapping and visual evaluation tools.
+✔ Automatic dataset detection
+✔ BERT-powered semantic understanding
+✔ Behavioural signal integration
+✔ Visual metric evaluation
 
-🔍 Predicts user preference (0–1 score) using:
+🧠 System Architecture
+🔷 Architecture Diagram
 
-Query semantics
+(Replace with your own diagram later if needed)
 
-Product text embeddings (BERT)
+Explanation:
 
-Click-rate behaviour
+Queries + product descriptions → BERT produces embeddings
 
-Time spent on page
+Behavioural features → normalised numerical vector
 
-⚡ Highlights
+Both are concatenated → Fully-connected layers → Sigmoid output
 
-🔥 High accuracy on personalised product recommendations
+Predicts probability of user engagement
 
-📊 Visualisation included (bar graph of model metrics)
+📥 Dataset Flow
+🔷 Dataset Processing Flow Chart
 
-📁 Auto-detects Amazon Review datasets
-
-🧠 BERT-powered semantic understanding
-
-⚠️ Disclaimer: This project is for educational and research purposes only.
-It must not be used for commercial profiling or sensitive decision-making.
-
-🚀 Features
-🚀 1. Semantic + Behavioural Deep Fusion
-
-Uses BERT embeddings for text and fuses them with behavioural signals for improved prediction accuracy.
-
-🚀 2. Automatic Dataset Mapping
-
-If your dataset contains Amazon Review fields:
+Automatic Mapping Includes:
+If dataset contains Amazon fields:
 
 name  
 reviews.text  
@@ -41,11 +37,7 @@ reviews.numHelpful
 categories
 
 
-The model automatically converts to SADLF format.
-
-🚀 3. Custom Dataset Support
-
-Also supports datasets already in the format:
+The model auto-converts into:
 
 query  
 page_content  
@@ -53,52 +45,71 @@ click_rate
 time_spent  
 label
 
-🧱 Model Architecture (SADLF)
-[BERT semantic embedding]  
-        +  
-[Behavioural features]  
-        ↓  
-Linear(→128) → ReLU  
-Linear(128→64) → ReLU  
-Linear(64→1) → Sigmoid  
+🚀 Features
+1. Semantic + Behavioural Deep Fusion
+
+BERT embeddings capture query–product meaning
+
+Behaviour signals capture user engagement trends
+
+2. Automatic Dataset Detection
+
+Supports Amazon Review datasets (.csv / .zip)
+
+Automatically maps fields to SADLF format
+
+3. Multi-format Dataset Compatibility
+
+For custom datasets, expect the following columns:
+
+query  
+page_content  
+click_rate  
+time_spent  
+label
+
+🧱 Model Architecture
+[BERT Encoding]
+      +
+[click_rate, time_spent]
+            ↓
+Linear → 128 → ReLU
+Linear →  64 → ReLU
+Linear →   1 → Sigmoid
 
 
 Loss: MSELoss
 
-Optimiser: Adam (0.0005)
+Optimiser: Adam (lr=0.0005)
 
 Epochs: 15
 
-🧪 Training the Model
+🧪 Training
 
 Run:
 
 python recommendation.py
 
 
-A file-picker will open. Choose:
+Then select your dataset when the file-picker opens.
 
-dataset.csv, or
+Sample Training Output:
+Epoch 3/15 — Loss: 0.028
+Epoch 6/15 — Loss: 0.019
+Epoch 9/15 — Loss: 0.014
 
-dataset.zip
+📈 Evaluation Metrics
+Metric	Value
+MSE	0.04
+Precision	0.91
+Recall	0.88
+F1 Score	0.89
 
-Example log:
-Epoch 3/15 — Loss: 0.028  
-Epoch 6/15 — Loss: 0.019  
-Epoch 9/15 — Loss: 0.014  
+The script displays a bar graph of these metrics automatically.
 
-📈 Model Evaluation Output
-MSE = 0.04  
-Precision = 0.91  
-Recall = 0.88  
-F1-Score = 0.89
-
-
-Includes a bar graph of all 4 metrics.
-
-⚙️ Installation
+⚙ Installation
 python -m venv venv
-venv\Scripts\Activate.ps1
+venv\Scripts\activate.ps1
 pip install -r requirements.txt
 
 📂 Project Structure
@@ -109,24 +120,29 @@ SADLF-RecSys/
 ├── README.md
 ├── .gitignore
 │
-├── dataset.csv (optional)
-└── uploaded_dataset/ (auto)
+├── dataset.csv               (optional)
+└── uploaded_dataset/         (auto-created)
 
 🎯 Future Enhancements
 
-Web API (FastAPI / Flask)
+REST API (FastAPI / Flask)
 
-Streamlit dashboard
+Streamlit GUI
 
-Explainability (SHAP / LIME)
+Explainability (LIME / SHAP)
 
-Vector search with FAISS
+FAISS vector search
 
 Hybrid collaborative filtering
 
+⚠ Disclaimer
+
+This tool is for academic and research use only.
+Do not use it for critical or commercial decision-making.
+
 🙌 Credits
 
-BERT (Devlin et al.)
+BERT — Devlin et al.
 
 PyTorch
 
@@ -134,4 +150,4 @@ Scikit-Learn
 
 Amazon Review Datasets
 
-Maintainer: Sree Sai Vikas V.M
+Maintained by: Sree Sai Vikas V.M
